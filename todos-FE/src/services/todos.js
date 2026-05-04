@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 // Define a service using a base URL and expected endpoints
 export const todosApi = createApi({
     reducerPath: 'todosApi',
-    baseQuery: fetchBaseQuery({ baseUrl: '/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://todo-mongodb-1-ffup.onrender.com/' }),
     endpoints: (builder) => ({
         getTodos: builder.query({
             query: () => {
