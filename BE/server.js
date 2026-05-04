@@ -9,7 +9,7 @@ app.use(cors())
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:true}))
 
-mongoose.connect("mongodb://shiva7_db:shiva1377@ac-eayqnpd-shard-00-00.vsseipx.mongodb.net:27017,ac-eayqnpd-shard-00-01.vsseipx.mongodb.net:27017,ac-eayqnpd-shard-00-02.vsseipx.mongodb.net:27017/?ssl=true&replicaSet=atlas-fphsgm-shard-0&authSource=admin&appName=Shiva7").then(() => {console.log("mongodb connected")})
+mongoose.connect("mongodb://chintasrinath7:thisispassword@ac-phjpt1h-shard-00-00.jgbobfp.mongodb.net:27017,ac-phjpt1h-shard-00-01.jgbobfp.mongodb.net:27017,ac-phjpt1h-shard-00-02.jgbobfp.mongodb.net:27017/?ssl=true&replicaSet=atlas-3e4540-shard-0&authSource=admin&appName=Cluster0").then(() => {console.log("mongodb connected")})
 .catch((err) => {console.log(err)})
 
 app.get('/', (req, res) => {
