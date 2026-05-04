@@ -5,7 +5,7 @@ import Todo from '../Todo/Todo';
 
 const Todos = () => {
     var [addtodo] = useAddTodosMutation();
-    // var { isLoading: todosloading, data: todos, refetch } = useGetTodosQuery();
+    // var { isLoading: todosloading, data: todos } = useGetTodosQuery();
     var [latesttodos, { data: todos, isLoading }] = useLazyGetTodosQuery();
 
     useEffect(() => {

@@ -1,38 +1,34 @@
 const express = require("express")
-const cors = require("cors")
-const mongoose = require("mongoose")
-require("dotenv").config();
-const todos = require("./models/todos")
-const bodyParser = require('body-parser');
-
 const app = express()
+const mongoose = require('mongoose');
+const todos = require("./models/todo");
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
-app.use(cors());
+app.use(cors())
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:true}))
 
-//connect to the mongodb database
-mongoose.connect(process.env.MONGO_URI)
-.then(()=>{console.log("mongodb connected")})
-.catch((err)=>{console.log("error",err)})
+mongoose.connect("mongodb://shiva7_db:shiva1377@ac-eayqnpd-shard-00-00.vsseipx.mongodb.net:27017,ac-eayqnpd-shard-00-01.vsseipx.mongodb.net:27017,ac-eayqnpd-shard-00-02.vsseipx.mongodb.net:27017/?ssl=true&replicaSet=atlas-fphsgm-shard-0&authSource=admin&appName=Shiva7").then(() => {console.log("mongodb connected")})
+.catch((err) => {console.log(err)})
 
-app.get("/",(req,res)=>{
-    res.send("api running")
+app.get('/', (req, res) => {
+    res.send('Hello World')
 })
 
 app.post("/addtodos",(req,res)=>{
-    const todo = new todos(req.body);
-    todo.save();
-    res.send({"msg":"todo added"})
+    console.log(req.body)
+
+    const newtodo = todos(req.body);
+    newtodo.save()
+    res.send({"msg":"todos added"})
 })
 
-app.get("/gettodos",async (req,res)=>{
-    //using await because it needs time to complete its fetch
-    //using await we can get full data beacuse next line(33) wont execute until completion of find()
-    const alltodos = await todos.find();
-    res.send(alltodos)
+app.get("/gettodos",async(req,res)=>{
+    var todo = await todos.find()
+    res.json(todo)
 })
 
-app.listen(process.env.PORT,()=>{
-    console.log(`http://localhost:${process.env.PORT}`)
+app.listen(3000, () => {
+    console.log('Server is running on http://localhost:3000')
 })
